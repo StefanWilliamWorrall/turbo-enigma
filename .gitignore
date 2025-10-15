@@ -416,3 +416,15 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+.idea
+
+.env.dev
+.env.local
+
+src/WeatherNow.Api/appsettings.Development.json

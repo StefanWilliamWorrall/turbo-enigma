@@ -1,0 +1,19 @@
+﻿services:
+  weathernow.api:
+    image: weathernow.api
+    build:
+      context: .
+      dockerfile: src/WeatherNow.Api/Dockerfile
+    volumes:
+      - ./certs:/app/certs:ro
+    container_name: weathernow.api
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT
+      - ASPNETCORE_Kestrel__Endpoints__Http__Url
+      - ASPNETCORE_Kestrel__Endpoints__Https__Url
+      - ASPNETCORE_Kestrel__Endpoints__Https__Certificate__Path
+      - ASPNETCORE_Kestrel__Endpoints__Https__Certificate__Password
+      - Logging__LogLevel__Default
