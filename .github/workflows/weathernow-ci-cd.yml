@@ -28,7 +28,10 @@ jobs:
             BUILD_CONFIG="Debug"
           fi
           
-          echo "buildConfig=BUILD_CONFIG" >> $GITHUB_OUTPUT
+          echo "Build Config: $BUILD_CONFIG"
+          echo "Branch: $BRANCH"
+          
+          echo "buildConfig=$BUILD_CONFIG" >> $GITHUB_OUTPUT
           echo "branchName=$BRANCH" >> $GITHUB_OUTPUT
           
   build:
