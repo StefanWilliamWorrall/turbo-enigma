@@ -12,6 +12,7 @@
       - "8081:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT
+      - OpenWeatherMap__ApiKey
       - ASPNETCORE_Kestrel__Endpoints__Http__Url
       - ASPNETCORE_Kestrel__Endpoints__Https__Url
       - ASPNETCORE_Kestrel__Endpoints__Https__Certificate__Path

@@ -17,4 +17,10 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WeatherNow.Application\WeatherNow.Application.csproj" />
+      <ProjectReference Include="..\WeatherNow.Domain\WeatherNow.Domain.csproj" />
+      <ProjectReference Include="..\WeatherNow.Infrastructure\WeatherNow.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>
