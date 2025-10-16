@@ -9,7 +9,6 @@
     container_name: weathernow.api
     ports:
       - "8080:8080"
-      - "8081:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT
       - OpenWeatherMap__ApiKey
@@ -18,3 +17,27 @@
       - ASPNETCORE_Kestrel__Endpoints__Https__Certificate__Path
       - ASPNETCORE_Kestrel__Endpoints__Https__Certificate__Password
       - Logging__LogLevel__Default
+      - Frontend__Url
+    networks:
+      - weathernow-network
+        
+  weathernow.client:
+    build:
+      context: ./src/WeatherNow.ClientApp
+      dockerfile: Dockerfile
+    volumes:
+      - ./src/WeatherNow.ClientApp:/app
+      - /app/node_modules
+    container_name: weathernow.client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - weathernow.api
+    environment:
+      - VITE_API_URL=http://weathernow.api:8080
+    networks:
+      - weathernow-network
+
+networks:
+  weathernow-network:
+    driver: bridge
