@@ -1,16 +1,15 @@
-﻿# src/ClientApp/Dockerfile.dev
-FROM node:20
+﻿FROM node:20 AS build
 WORKDIR /app
-
-# Copy package.json and install dependencies
 COPY package*.json ./
 RUN npm install
+COPY . .
 
-# Mount source code (do not copy; mount in docker-compose)
-# COPY . .
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 
-# Expose dev server port
-EXPOSE 5173
+RUN npm run build
 
-# Start Vite dev server, bind to 0.0.0.0 so host can access
-CMD ["npm", "run", "dev", "--", "--host"]
+FROM nginx:stable-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
