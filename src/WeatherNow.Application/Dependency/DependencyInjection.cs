@@ -1,9 +1,11 @@
-﻿using Arta.Abstractions.Pipeline;
+﻿using System.Reflection;
+using Arta.Abstractions.Pipeline;
 using Arta.Abstractions.Queries;
 using Arta.Abstractions.Requests;
 using Arta.Abstractions.Results;
 using Arta.Core.Container;
 using Arta.Core.Pipeline;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using WeatherNow.Application.Abstract.Util;
 using WeatherNow.Application.Pipeline;
@@ -23,6 +25,10 @@ public static class DependencyInjection
         services.AddScoped<ITemperatureConverter, TemperatureConverter>();
         services.AddScoped<IWindSpeedConverter, WindSpeedConvertor>();
         services.AddScoped(typeof(IPipelineStage<,>), typeof(PipelineTelemetryStage<,>));
+        services.AddScoped(typeof(IPipelineStage<,>), typeof(TransportLevelErrorSimulationPipeline<,>));
+        services.AddScoped(typeof(IPipelineStage<,>), typeof(ValidationPipelineStage<,>));
+
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         return services;
     }

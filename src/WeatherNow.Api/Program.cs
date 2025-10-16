@@ -15,6 +15,16 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices();
 
+var frontendUrl = builder.Configuration["Frontend__Url"] ?? "http://localhost:5173";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+        policy.WithOrigins(frontendUrl)
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 
@@ -31,7 +41,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowReactApp");
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

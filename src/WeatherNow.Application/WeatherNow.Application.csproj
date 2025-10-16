@@ -17,6 +17,8 @@
 
     <ItemGroup>
       <PackageReference Include="Arta.Core" Version="0.0.2.1-alpha.20251016063106.52" />
+      <PackageReference Include="FluentValidation" Version="12.0.0" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
     </ItemGroup>
 
