@@ -20,7 +20,7 @@ var frontendUrl = builder.Configuration["Frontend__Url"] ?? "http://localhost:51
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
-        policy.WithOrigins(frontendUrl)
+        policy.WithOrigins(frontendUrl, "http://localhost:80")
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
