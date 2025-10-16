@@ -4,6 +4,8 @@ WORKDIR /app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 RUN npm install
 
 # Mount source code (do not copy; mount in docker-compose)
