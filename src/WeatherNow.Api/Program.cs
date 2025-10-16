@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.HttpOverrides;
+using WeatherNow.Application.Dependency;
+using WeatherNow.Infrastructure.Dependency;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services
+    .AddApplicationServices()
+    .AddInfrastructureServices();
 
 var app = builder.Build();
 
