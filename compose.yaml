@@ -24,7 +24,7 @@
   weathernow.client:
     build:
       context: ./src/WeatherNow.ClientApp
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     volumes:
       - ./src/WeatherNow.ClientApp:/app
       - /app/node_modules
